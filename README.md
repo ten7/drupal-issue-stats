@@ -66,39 +66,78 @@ You only ever run `dorg_stats.py`. Everything else happens for you.
 | Requirement | Notes |
 |---|---|
 | **Python 3.8+** | Verify: `python3 --version` |
-| **`requests`** | The one required dependency. Installed via `requirements.txt` below. |
+| **`requests`** | The one required dependency. See [Installation](#installation). |
 | **`weasyprint`** *(optional)* | For direct `--pdf` output. Without it, open the HTML and use your browser's Print → Save as PDF. |
-| **`vaderSentiment`** *(optional)* | Research-grade sentiment for the `--deep` tone profile. Without it, a smaller built-in lexicon fills in. |
+| **`vaderSentiment`** *(optional)* | Research-grade sentiment for the `--tone` profile. Without it, a smaller built-in lexicon fills in. |
 
 ---
 
 ## Installation
 
-**1. Clone the repository:**
+Clone the repository:
 
 ```bash
 git clone https://github.com/ten7/drupal-issue-stats.git
 cd drupal-issue-stats
 ```
 
-**2. Create a virtual environment (recommended):**
+Then install the one required dependency, `requests`, for your operating system. There's no virtual environment to set up — once `requests` is on your system, you run the tool directly.
+
+We invoke pip as `python3 -m pip` (on Windows, `py -m pip`) rather than a bare `pip` command. That's the reliable way: it uses whichever Python you'd actually run the tool with, and it works even when there's no standalone `pip` on your `PATH`.
+
+### macOS
+
+Macs don't ship with Python 3, so install it first if `python3 --version` fails. The easiest route is [Homebrew](https://brew.sh):
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate    # Windows: .venv\Scripts\activate
+brew install python
 ```
 
-**3. Install dependencies:**
+Or download the installer from [python.org](https://www.python.org/downloads/macos/). Either one includes pip.
+
+Then install `requests`:
 
 ```bash
-pip install -r requirements.txt
+python3 -m pip install requests
 ```
 
-That covers `requests`. To enable PDF export and research-grade sentiment, uncomment the optional lines in `requirements.txt` first, or install them directly:
+If pip itself is missing (`No module named pip`), bootstrap it once, then re-run the line above:
 
 ```bash
-pip install weasyprint vaderSentiment
+python3 -m ensurepip --upgrade
 ```
+
+### Linux
+
+Most distributions already include Python 3. Install `requests`:
+
+```bash
+python3 -m pip install requests
+```
+
+If pip is missing, install it from your package manager — for example, on Debian or Ubuntu:
+
+```bash
+sudo apt install python3-pip
+```
+
+### Windows
+
+Install Python from [python.org](https://www.python.org/downloads/windows/), and check **"Add python.exe to PATH"** during setup. That gives you the `py` launcher and pip. Then, in PowerShell or Command Prompt:
+
+```powershell
+py -m pip install requests
+```
+
+### Optional extras
+
+To enable PDF export and research-grade sentiment, install the optional packages the same way:
+
+```bash
+python3 -m pip install weasyprint vaderSentiment
+```
+
+> **Seeing an `externally-managed-environment` error?** Some Python installs (notably Homebrew's, and newer Debian/Ubuntu) guard the system packages and refuse a direct install. Since you're installing natively, add `--break-system-packages` to the pip command — for example, `python3 -m pip install --break-system-packages requests`.
 
 ---
 
