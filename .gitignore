@@ -1,0 +1,25 @@
+# Response cache (holds fetched usernames, comments, issue data — keep local).
+.dorg_cache/
+
+# Generated reports.
+*-report.html
+*-comparison-report.html
+*.pdf
+# ...but ship the curated samples.
+!examples/*.html
+!examples/*.pdf
+
+# Python.
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.mypy_cache/
+.pytest_cache/
+
+# OS / editor.
+.DS_Store
+*.swp
+.idea/
+.vscode/

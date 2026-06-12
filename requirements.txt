@@ -1,0 +1,9 @@
+# Required.
+requests>=2.25
+
+# Optional — uncomment for the extra features.
+#
+# weasyprint>=60      # direct --pdf output (otherwise use your browser's
+#                     # Print > Save as PDF on the generated HTML)
+# vaderSentiment>=3.3 # research-grade sentiment for the --deep tone profile
+#                     # (falls back to a built-in lexicon when absent)
